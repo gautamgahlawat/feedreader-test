@@ -51,7 +51,7 @@ $(function() {
          });
     });
 
-    /* TODO: Write a new test suite named "The menu" */
+/* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
 
         /* TODO: Write a test that ensures the menu element is
@@ -97,7 +97,29 @@ $(function() {
         });
     });
 
+/* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+         var container = $('.feed');
+        var feed0 = null,
+            feed1 = null;
 
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feed0 = container.text();
+                loadFeed(1, function() {
+                    feed1 = container.text();
+                    done();
+                });
+            });
+        });
 
+        it('Should make the content changes', function(){
+            expect(feed0).not.toEqual(feed1);
+        });
+    });
 
 }());
